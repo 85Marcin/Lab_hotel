@@ -12,10 +12,19 @@ const HotelContainer = () => {
     });
   }, []);
 
+  const addBooking = (booking) => {
+    setBookings([...bookings, booking]);
+  };
+
+  const removeBooking = (id) => {
+    const nextBookings = bookings.filter((booking) => booking._id !== id);
+    setBookings(nextBookings);
+  };
+
   return (
     <>
-      <BookingForm />
-      <BookingsList bookings={bookings} />;
+      <BookingForm addBooking={addBooking} />
+      <BookingsList bookings={bookings} removeBooking={removeBooking} />;
     </>
   );
 };
